@@ -1,0 +1,103 @@
+body, html {
+    height: 100%;
+	
+}
+
+h1{
+color:green;
+}
+#transtop{
+
+
+  top:0px;
+background: red;
+height:100px;
+}
+#banner img{
+position:fixed;
+width:100%;
+height:150px;
+z-index:10;
+}
+.topnav {
+    
+    overflow: hidden;
+}
+#mytopnav{
+top:150;
+position:fixed;
+width:100%;
+z-index:10;
+}
+#main{
+
+background: linear-gradient(white, green);
+position:relative;
+top:202px;
+
+}
+/* Style the links inside the navigation bar */
+.topnav a {
+
+    float:left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover:not(:first-child) {
+	
+	transition:height 2s, 1.5s;
+	box-shadow:inset 0px -19px 0.6px rgba(12, 255, 0, 1);
+    text-decoration: none;
+    color: white;
+}
+
+/* Add an active class to highlight the current page */
+.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+    display: none;
+}
+.topnav a:nth-last-child(1){
+float:right;
+}
+.topnav a img{
+width:55px;
+height:35px;
+}
+.topnav a:nth-last-child(2){
+float:right;
+}
+
+.parallax { 
+z-index:-10;
+    /* The image used */
+	position:relative;
+  top:0px;
+
+}
+
+.parallax img{ 
+    /* The image used */
+	background-attachment: scroll;
+ top:0px;
+z-index:-10;
+position:absolute;
+    /* Set a specific height */
+    height: auto; 
+	width:100%;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: cover;
+}
