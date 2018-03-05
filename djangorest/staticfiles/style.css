@@ -6,6 +6,13 @@ body, html {
 h1{
 color:green;
 }
+#transtop{
+
+
+  top:0px;
+background: red;
+height:100px;
+}
 #banner img{
 position:fixed;
 width:100%;
