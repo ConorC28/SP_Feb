@@ -5,6 +5,7 @@ from .views import DetailsView
 from django.views.static import serve
 from django.conf.urls.static import static
 from django.conf import settings
+from . import views
 
 
 
@@ -14,6 +15,9 @@ urlpatterns = {
 	url(r'^gameslists/$', CreateView.as_view(), name="create"),
 	url(r'^gameslists/(?P<pk>[0-9]+)/$',
 		DetailsView.as_view(), name="details"),
+	#url(r'^users/', include('api.urls')),
+	
+
 	#url(r'^$', views.index, name='index'),  #Render out HTML
 	
 	#url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT})

@@ -1,8 +1,10 @@
 from django.db import models
+from rest_framework import serializers
+from rest_framework.validators import UniqueValidator
+from django.contrib.auth.models import User
 
 
-
-
+		
 class Gameslist(models.Model):
 	title = models.CharField(max_length=225, blank=False, unique=True)
 	console = models.CharField(max_length=50, blank=False, unique=True)
