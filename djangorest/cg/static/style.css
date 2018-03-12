@@ -36,6 +36,20 @@ position:relative;
 top:202px;
 
 }
+
+.navbar-collapse.in{
+transition:0.2s;
+background-color:black;
+
+}
+
+.navbar-nav{
+float:none; !important
+}
+.navbar-header{
+float:none; !important
+}
+
 /* Style the links inside the navigation bar */
 .topnav a {
 

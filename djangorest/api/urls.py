@@ -6,6 +6,8 @@ from django.views.static import serve
 from django.conf.urls.static import static
 from django.conf import settings
 from . import views
+from djangorest import views
+
 
 
 
@@ -15,6 +17,11 @@ urlpatterns = {
 	url(r'^gameslists/$', CreateView.as_view(), name="create"),
 	url(r'^gameslists/(?P<pk>[0-9]+)/$',
 		DetailsView.as_view(), name="details"),
+		
+	url(r'^$',views.home, name='home'),
+	url(r'^about$',views.about, name='about'),
+	url(r'^gameslists/$', CreateView.as_view(), name='gameslist'),
+	
 	#url(r'^users/', include('api.urls')),
 	
 
