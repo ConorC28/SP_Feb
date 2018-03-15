@@ -15,6 +15,7 @@ from rest_framework import serializers
 from rest_framework import status
 from .permissions import IsOwnerOrReadOnly
 
+
 #user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
 
 #class UserCreate(generics.ListCreateAPIView):

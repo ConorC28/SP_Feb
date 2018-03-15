@@ -29,6 +29,6 @@ class GameslistSerializer(serializers.ModelSerializer):
 	class Meta:
 		"""Meta class to map serializers fields with the model fields"""
 		model = Gameslist
-		fields = ('id', 'title', 'console', 'release_date', 'description', 'fond_memories', 'game_pic', 'owner', 'date_created','date_modified')
+		fields = ('id', 'title', 'console', 'user_rating', 'release_date', 'description', 'fond_memories', 'game_pic', 'owner', 'date_created','date_modified')
 		read_only_fields = ('date_modified', 'date_crereated')
 

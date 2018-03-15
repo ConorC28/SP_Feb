@@ -7,7 +7,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from . import views
 from djangorest import views
-
+from django.contrib.staticfiles.storage import StaticFilesStorage
 
 
 
@@ -21,6 +21,8 @@ urlpatterns = {
 	url(r'^$',views.home, name='home'),
 	url(r'^about$',views.about, name='about'),
 	url(r'^gameslists/$', CreateView.as_view(), name='gameslist'),
+	#url(r'^gameslists/(?P<pk>[0-9]+)/staticfiles/$'),
+	
 	
 	#url(r'^users/', include('api.urls')),
 	
