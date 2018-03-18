@@ -1,20 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
-<!--Howdy Template-->
-
-
 <html>
-
-	<head>
-		<meta charset ="utf-8">
-		<title>CG Welcomes Thee{% block title %}{% endblock %}</title>
+    <head>
+        <meta charset="utf-8">
+        <title>Howdy!</title>
 		
 		<!-- jQuery library -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		
-		<!--<script src={% static "main.js" %}type ="text/javascript"></script>-->
-		
-		<!--<link href="{{ STATIC_URL }}style.css" rel="stylesheet" type="text/css" />-->
 		
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -26,24 +18,22 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		
 		
-		
-		
-	</head>
-	<body>	
-{% block pagecontent %}	
-		<div class ="container" id = "main">
+    </head>
+    <body>
+	{% block aboutcontent %}
+	
+	<div class ="container" id = "main">
 			<div class = "row">
 			
 				<div class="col-lg-12">
-				<h1>Welcome to Chronos Gaming - The plane of the glorious ones!!</h1>
-				<a href="{% url 'about' %}">About More Work</a></br>Welcome To Chronos Gaming<br>
-
-
-				</div>
-
-			</div>
-		</div>		  
-{% endblock %}		
+        <h1>Add to your Games list</h1>
+    <p>
+    Cascading Style Sheets (CSS) is a language used for describing the look and formatting of a website written in a markup<br>
+	language (like HTML). Treat it as make-up for our web page. ;)But we don't want to start from scratch again, right? Once<br>
+	more, we'll use something that programmers released on the Internet for free. Reinventing the wheel is no fun, you know.
+    </p>
+    <a href="{% url 'home' %}">Go back home</a>
+	</div></div></div>
+	{% endblock %}
     </body>
-
-	</html>
+</html>

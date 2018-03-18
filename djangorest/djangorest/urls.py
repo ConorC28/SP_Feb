@@ -17,13 +17,18 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
+from django.views.generic import TemplateView
+from djangorest import views
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+	path('../cg/templates/', TemplateView.as_view(template_name="addgames.html")),
 	url(r'^', include('api.urls')),
 	url(r'^', include('cg.urls')),
+	
+	
 	#url(r'api/users^$', views.UserCreate.as_view(), name='account-create'),
 	
 ]
