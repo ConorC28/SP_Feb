@@ -5,12 +5,19 @@ from django.views.generic import TemplateView
 #from djangorest.forms import UploadGameForm
 from django.shortcuts import render
 from django.urls import path
+from djangorest.forms import UploadGameForm
+
+from api.models import Gameslist
+from api.models import GameslistForm
+from django.shortcuts import render_to_response, get_object_or_404
+from django.template import RequestContext
+
 
 # Create your views here.
 def home(request):
 	return render(
 		request,
-		'about.html',
+		'home.html',
 		context = None)
 		
 def about(request):
@@ -18,20 +25,7 @@ def about(request):
 		request,
 		'about.html',
 		context = None)
-
-#class addgames(TemplateView):
-#	template_name = "addgames.html"
-
-def addgames(request):
-	return render(
-		request,
-		'addgames.html',
-		context = None)
-	
-	#def get (self, request):
-	#	form = UploadGameForm()
-	#	return render(request, self.template_name, {'form': form})
-
+		
 def news(request):
 	return render(
 		request,
@@ -42,5 +36,31 @@ def trends(request):
 	return render(
 		request,
 		'trends.html',
+		context = None)		
+
+#class addgames(TemplateView):
+#	template_name = "addgames.html"
+
+def addgames(request):
+	return render(
+		request,
+		'addgames.html',
 		context = None)
+		
+	def submitform(request):
+		if request.method == "POST":
+			form = GameslistForm(request.POST)
+			if form.is_valid():
+			   form.save()
+			   return render(request, 'newgameslist.html')
+    
+	
+	#def get (self, request):
+	#	form = UploadGameForm()
+	#	return render(request, self.template_name, {'form': form})
+
+def get (self,request):
+	form = UploadGameForm()
+	return render(request, '/templates/addgames.html', {'form': form})
+
 		

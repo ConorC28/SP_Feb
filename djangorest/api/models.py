@@ -3,9 +3,11 @@ from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.models import User
 from multiselectfield import MultiSelectField          # Allows user multichoice for model, console - pip install django-multiselectfield
+from django.forms import ModelForm
 
-
-CONSOLE_CHOICES = (('Playststion', 'Playstation'), # The first element is what is added to the db and the second is what displays for the user selection
+CONSOLE_CHOICES = (
+				('Playstation', 'Playstation'), # The first element is what is added to the db and the second is what displays for the user selection
+				('PC', 'PC'),
 				('Commodore 64', 'Commodore 64'),
 				('Nes', 'Nes'),
 				('N64', 'N64'),
@@ -57,7 +59,7 @@ class Gameslist(models.Model):
 	user_rating = MultiSelectField(choices=RATING_CHOICES)
 	#collector_status = MultiSelectField(choices=COLLECTOR_STATUS_CHOICES)
 	#release_date = models.DateField(default=datetime.now, blank=True)
-	release_date = models.CharField(max_length=10, blank=False, unique=False)
+	release_date = models.DateField(blank=True, null=True)
 	description = models.CharField(max_length=5000, blank=False, unique=False)
 	fond_memories = models.CharField(max_length=10000, blank=False, unique=False)
 	game_pic = models.ImageField(upload_to = 'staticfiles/', default = 'staticfiles/None/no-img.jpg')
@@ -67,7 +69,10 @@ class Gameslist(models.Model):
 	date_created = models.DateTimeField(auto_now_add=True)
 	date_modified = models.DateTimeField(auto_now=True)
 	
-	
+class GameslistForm(ModelForm):
+	class Meta:
+		model = Gameslist()
+		fields = "__all__"
 	
 	
 	def __str__(self):

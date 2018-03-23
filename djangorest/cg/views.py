@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from cg.forms import UploadGameForm
+
 
 # Create your views here.
 #def home(request):
@@ -23,6 +23,3 @@ class AboutPageView(TemplateView):
 	#def get(self, request, **kwargs):
 	#return render(request, 'about.html', context=None)
 	"""
-def get (self,request):
-	form = UploadGameForm()
-	return render(request, '/templates/addgames.html', {'form': form})
