@@ -7,6 +7,10 @@ from django.shortcuts import render
 from django.urls import path
 from djangorest.forms import UploadGameForm
 
+from django.views.static import serve
+from django.conf.urls.static import static
+from django.contrib.staticfiles.storage import StaticFilesStorage
+
 from api.models import Gameslist
 from api.models import GameslistForm
 from django.shortcuts import render_to_response, get_object_or_404
@@ -33,7 +37,7 @@ def news(request):
 		context = None)
 		
 def trends(request):
-	return render(
+		return render(
 		request,
 		'trends.html',
 		context = None)		
@@ -42,10 +46,20 @@ def trends(request):
 #	template_name = "addgames.html"
 
 def addgames(request):
+	
+	gameslists = Gameslist.objects.all()
+	
+	args = {'gameslists': gameslists}
+	
 	return render(
-		request,
+		request, 
 		'addgames.html',
-		context = None)
+		args)
+		
+	
+	
+		
+		
 		
 	def submitform(request):
 		if request.method == "POST":

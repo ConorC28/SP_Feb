@@ -20,16 +20,25 @@
 		
     </head>
     <body>
+	
 	{% block aboutcontent %}
 	
 	<div class ="container" id = "main">
 			<div class = "row">
 			
 				<div class="col-lg-12">
+				
+				
+				
         <h1>Add to your Games list</h1>
     <p>
     Add the latest additions to your collection! MWOE
     </p>
+	{% for gameslist in gameslists%}
+					<h1> {{gameslist.gameslist}} </h1>
+					<p> {{gameslist.title}} </p>
+				    <img src="{{ gameslist.game_pic.url }" width="500px"}>					
+	{% endfor %}
 	<form method="post">
 		<!--<input type="text">
 		<button type="submit">Submit</button>-->

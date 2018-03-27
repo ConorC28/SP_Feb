@@ -13,12 +13,28 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path
-from django.conf.urls import url, include
+from django.conf.urls import url
 from django.views.generic import TemplateView
 from djangorest import views
+from api import urls
+
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.staticfiles.storage import StaticFilesStorage
+
+from django.shortcuts import render
+from django.views.generic import TemplateView
+
+
+from django.views.static import serve
+from django.conf.urls.static import static
+from django.contrib.staticfiles.storage import StaticFilesStorage
+
+
+
+
 
 #from api import urls
 
@@ -26,8 +42,8 @@ from djangorest import views
 urlpatterns = [
    #url('^admin/', admin.site.urls),
 	#path('../cg/templates/', TemplateView.as_view(template_name="addgames.html")),
-	url(r'^', include('api.urls')),
-	url(r'^', include('cg.urls')),
+	#url(r'^', include('api.urls')),
+	#url(r'^', include('cg.urls')),
 	
 	
 	
@@ -37,4 +53,6 @@ urlpatterns = [
 	
 	#url(r'api/users^$', views.UserCreate.as_view(), name='account-create'),
 	
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
+
+urlpatterns += static(settings.STATIC_URL,document_root=settings.STATIC_URL)
