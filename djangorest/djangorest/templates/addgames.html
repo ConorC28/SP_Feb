@@ -37,7 +37,13 @@
 	{% for gameslist in gameslists%}
 					<h1> {{gameslist.gameslist}} </h1>
 					<p> {{gameslist.title}} </p>
-				    <img src="{{ gameslist.game_pic.url }" width="500px"}>					
+				    <img src="{{ gameslist.game_pic.url }}" width = "100" alt = "Meow">
+					
+					
+					<!--<img src="{% static 'gameslist.game_pic.url' %}">-->	
+
+					<!--<img src="{% static 'stary.png' %}"/></div>-->
+					
 	{% endfor %}
 	<form method="post">
 		<!--<input type="text">

@@ -3,7 +3,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from .views import CreateView
 from .views import DetailsView
 from django.views.static import serve
-from django.conf.urls.static import static
+
 
 											#Imports do display images, static files
 from django.conf import settings
@@ -17,6 +17,8 @@ from djangorest import views
 from djangorest import urls
 from django.views.generic import TemplateView
 from django.conf import settings
+
+from djangorest import urls
 
 
 urlpatterns = {
@@ -44,7 +46,8 @@ urlpatterns = {
 
 	#url(r'^$', views.index, name='index'),  #Render out HTML
 	
-	#url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT})
+	url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+	url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT})
 	#url(r'^staticfiles')
 } 
 

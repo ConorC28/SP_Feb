@@ -62,7 +62,7 @@ class Gameslist(models.Model):
 	release_date = models.DateField(blank=True, null=True)
 	description = models.CharField(max_length=5000, blank=False, unique=False)
 	fond_memories = models.CharField(max_length=10000, blank=False, unique=False)
-	game_pic = models.ImageField(upload_to = 'staticfiles/', default = 'staticfiles/None/no-img.jpg')
+	game_pic = models.ImageField(upload_to = 'game_image', default = 'staticfiles/None/no-img.jpg')
 	owner = models.ForeignKey('auth.User',
 	related_name='gameslists',
 	on_delete=models.CASCADE)

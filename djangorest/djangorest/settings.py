@@ -17,9 +17,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIR = (
-	os.path.join(BASE_DIR, 'static')
-)
+#STATICFILES_DIR = (
+#	os.path.join(BASE_DIR, 'staticfiles')
+#)
+
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_ROOT = (
 	os.path.join(BASE_DIR, 'media')
@@ -27,7 +29,7 @@ MEDIA_ROOT = (
 
 MEDIA_URL = '/media/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'djangorest/media')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
