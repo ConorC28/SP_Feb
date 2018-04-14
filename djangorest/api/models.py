@@ -17,7 +17,12 @@ CONSOLE_CHOICES = (
 				('Famicom(Japan release only)', 'Famicom(Japan release only)'),
 				('Gameboy', 'Gameboy'),
 				('Gameboy Advanced', 'Gameboy Advanced'),
+				('Nintendo DS', 'Nintendo DS'),
+				('Nintendo 3DS', 'Nintendo 3DS'),
 				('Nintendo Gamecube', 'Nintendo Gamecube'),
+				('Nintendo Wii', 'Nintendo Wii'),
+				('Nintendo WiiU', 'Nintendo WiiU'),
+				('Nintendo Switch', 'Nintendo Switch'),
 				('Sega Master System', 'Sega Master System'),
 				('Sega Mega-Drive/Genesis', 'Sega Mega-Drive/Genesis'),
 				('Sega Saturn', 'Sega Saturn'),
@@ -25,7 +30,11 @@ CONSOLE_CHOICES = (
 				('Sega Gamegear', 'Sega Gamegear'),
 				('Sony Playstation','Sony Playstation'),
 				('Sony Playstation 2','Sony Playstation 2'),
-				('Microsoft Xbox', 'Microsoft Xbox'))
+				('Sony Playstation 3','Sony Playstation 3'),
+				('Sony Playstation 4','Sony Playstation 4'),
+				('Microsoft Xbox', 'Microsoft Xbox'),
+				('Microsoft Xbox360', 'Microsoft Xbox360'),
+				('Microsoft XboxONE', 'Microsoft XboxONE'))
 				
 RATING_CHOICES = (('0.5', '0.5'), # The first element is what is added to the db and the second is what displays for the user selection
 				('1.0', '1.0'),
@@ -62,7 +71,7 @@ class Gameslist(models.Model):
 	release_date = models.DateField(blank=True, null=True)
 	description = models.CharField(max_length=5000, blank=False, unique=False)
 	fond_memories = models.CharField(max_length=10000, blank=False, unique=False)
-	game_pic = models.ImageField(upload_to = 'game_image', default = 'staticfiles/None/no-img.jpg')
+	game_pic = models.ImageField(upload_to = 'game_image', default = 'game_image')
 	owner = models.ForeignKey('auth.User',
 	related_name='gameslists',
 	on_delete=models.CASCADE)

@@ -27,48 +27,102 @@
 		<link rel="icon" href="{% static 'bannerpiclogo.png' %}" alt="mylogo">
 		
 	</head>
-	<body>
+	<body style="background-image: url('{% static "stary.png"%}')";>
 	
 	
-	<div class="parallax" ><img src="{% static 'stary.png' %}"/></div>
-	
+	<div class="parallax" >
+		<div id ="bgdiv">
+			
+		</div>
+	</div>
 	<div id = "banner"><img src="{% static 'bannerpic.png' %}" alt="myimage"/></div>
 	<!--<div id = "transtop"></div>-->
 	
-		
-		
-		
-		<div class="topnav" id="mytopnav">
-		
-		<nav class="navbar navbar">
-	<div class="navbar-header">
-		<button type="button" class="navbar-toggle  navbar-inverse" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span> 
-        </button>
 	
-		<div class="collapse navbar-collapse" id="myNavbar"> 
-			<ul class="nav navbar-nav">
-	
-		<a href ="home"><img src="{% static 'bannerpiclogo.png' %}" alt="mylogo"/></a>	
-		<a href="home">Home</a>
-		<a href="about">About</a>
-		<a href="news">News</a>
-		<a href="trends">Check Trends</a>
-		<a href="addgames">Add to Games</a>
-		<a href="gameslists">Games</a>
-		<a href="login">Login</a>
-		<a href="signup">Sign up</a>
+	<div class ="container" id = "main">
+		<div class = "row">
 		
-		</ul>
+			<div class="col-lg-12 col-md-12 ">
+		
+		
+		
+				<div class="topnav" id="mytopnav">
+				
+					<nav class="navbar navbar">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle  navbar-inverse" data-toggle="collapse" data-target="#myNavbar">
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span> 
+							</button>
+						
+							<div class="collapse navbar-collapse" id="myNavbar"> 
+								<ul class="nav navbar-nav">
+						
+									<a href ="home"><img src="{% static 'bannerpiclogo.png' %}" alt="mylogo"/></a>	
+									<a href="home">Home</a>
+									<a href="about">About</a>
+									<a href="news">News</a>
+									<a href="trends">Check Trends</a>
+									<a href="gamescolpage">View games collection</a>
+									<a href="AddGames">Add to games list</a>
+									<a href="gameslists">Games</a>
+									<a href="login">Login</a>
+									<a href="register">Sign up</a>
+									
+									
+							
+								</ul>
+								
+							</div>
+									{% if request.user %}
+										<div id = "loggedintab">
+										<a href="profile"><h1>{{request.user.username}}'s logged in! View details</h1></a>
+										
+										{% else %}
+									</div>
+									{% endif %}
+									
+									
+						</div>
+						
+						
+					</nav>
+					
+			
+				</div>
+				
+				
+			</div>
+			
+			
 		</div>
+		
 	</div>
-</nav>
-		
-		</div>
-		
-		
+	
+	
+		<!-- Jquery to change the nav color when scroll Down -->
+		<script>
+$(document).ready(function(){
+  $(window).scroll(function(){
+  	var scroll = $(window).scrollTop();
+	  if (scroll > 50) {
+	    $(".topnav a").css("background" , "#001A35");
+		$("#loggedintab a").css("background" , "#ffffff");
+	  }
+
+	  else{
+		  $(".topnav a").css("background" , "00");  	
+	  }
+  })
+})
+</script>
+		{% block addgames %}
+		{% endblock %}
+		{% block welcomecontent %}
+		{% endblock %}
+		{% block body %}
+		{% endblock %}
 		{% block pagecontent %}
         {% endblock %} 
 		{% block aboutcontent %}

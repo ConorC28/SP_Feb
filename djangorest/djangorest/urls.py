@@ -40,7 +40,7 @@ from django.contrib.staticfiles.storage import StaticFilesStorage
 
 
 urlpatterns = [
-   #url('^admin/', admin.site.urls),
+	url('^admin/', admin.site.urls),
 	#path('../cg/templates/', TemplateView.as_view(template_name="addgames.html")),
 	#url(r'^', include('api.urls')),
 	#url(r'^', include('cg.urls')),

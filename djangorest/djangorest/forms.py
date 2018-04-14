@@ -1,63 +1,57 @@
 from django import forms
-from multiselectfield import MultiSelectField
+from django.db import models
+from rest_framework import serializers
+from rest_framework.validators import UniqueValidator
+from django.contrib.auth.models import User
+from multiselectfield import MultiSelectField          # Allows user multichoice for model, console - pip install django-multiselectfield
+from django.forms import ModelForm
+from api.models import Gameslist
 
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm # Import to allow custom user creation form
 
-
-class UploadGameForm(forms.Form):
+								# Form to editprofile
+class EditProfileForm(UserChangeForm):
 	
-	CONSOLE_CHOICES = (('Playststion', 'Playstation'), # The first element is what is added to the db and the second is what displays for the user selection
-					('Commodore 64', 'Commodore 64'),
-					('Nes', 'Nes'),
-					('N64', 'N64'),
-					('Snes/Famicom (multi region release)', 'Snes/Famicom (multi region release)'),
-					('Snes(Europe release only)', 'Snes(Europe release only)'),
-					('Famicom(North America release only)', 'Famicom(North America release only)'),
-					('Famicom(Japan release only)', 'Famicom(Japan release only)'),
-					('Gameboy', 'Gameboy'),
-					('Gameboy Advanced', 'Gameboy Advanced'),
-					('Nintendo Gamecube', 'Nintendo Gamecube'),
-					('Sega Master System', 'Sega Master System'),
-					('Sega Mega-Drive/Genesis', 'Sega Mega-Drive/Genesis'),
-					('Sega Saturn', 'Sega Saturn'),
-					('Sega Dreamcast', 'Sega Dreamcast'),
-					('Sega Gamegear', 'Sega Gamegear'),
-					('Sony Playstation','Sony Playstation'),
-					('Sony Playstation 2','Sony Playstation 2'),
-					('Microsoft Xbox', 'Microsoft Xbox'))
-				
-	RATING_CHOICES = (('0.5', '0.5'), # The first element is what is added to the db and the second is what displays for the user selection
-					('1.0', '1.0'),
-					('1.5', '1.5'),
-					('2.0', '2.0'),
-					('2.5', '2.5'),
-					('3.0', '3.0'),
-					('3.5', '3.5'),
-					('4.0', '4.0'),
-					('4.5', '4.5'),
-					('5.0', '5.0'),
-					('5.5', '5.5'),
-					('6.0', '6.0'),
-					('6.5', '6.5'),
-					('7.0', '7.0'),
-					('7.5', '7.5'),
-					('8.0', '8.0'),
-					('8.5', '8.5'),
-					('9.0', '9.0'),
-					('9.5', '9.5'),
-					('10', '10'))
+	class Meta:
+		model = User
+		fields =  (
+			'first_name',
+			'last_name',
+			'email',
+			'password'
+		)
+								# Form to create user
+class RegistrationForm(UserCreationForm):
+	email = forms.EmailField(required=True)
+	
+	class Meta:
+		model = User
+		fields = (
+			'username',
+			'first_name',
+			'last_name',
+			'email',
+			'password1',
+			'password2'
+		)
+	
+	def save(self, commit=True):
+		user = super(RegistrationForm, self).save(commit=False)
+		user.first_name = self.cleaned_data['first_name']
+		user.last_name = self.cleaned_data['last_name']
+		user.email = self.cleaned_data['email']
+		
+		if commit:
+			user.save()
+			
+		return user
+								# Form to allow upload to gamelist from front end
+class UploadGameForm(forms.ModelForm):
 
-
-	title = forms.CharField()
-	console = MultiSelectField(choices=CONSOLE_CHOICES)
-	user_rating = MultiSelectField(choices=RATING_CHOICES)
-	#collector_status = MultiSelectField(choices=COLLECTOR_STATUS_CHOICES)
-	#release_date = models.DateField(default=datetime.now, blank=True)
-	release_date = forms.CharField()
-	description = forms.CharField()
-	fond_memories = forms.CharField()
-	#game_pic = forms.ImageField(upload_to = 'staticfiles/', default = 'staticfiles/None/no-img.jpg')
-	#owner = forms.ForeignKey('auth.User',
-	#related_name='gameslists',
-	#on_delete=forms.CASCADE)
-	#date_created = forms.DateTimeField(auto_now_add=True)
-	#date_modified = forms.DateTimeField(auto_now=True)
+	class Meta:
+		model = Gameslist
+		
+		fields = "__all__"
+		
+	
+	

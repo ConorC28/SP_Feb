@@ -1,17 +1,64 @@
 body, html {
-    height: 100%;
-	
+height: 100%;
 }
-
+#welcomecontents p{
+text-align:center;
+font-size:18px;
+}
+.row p{
+text-align:center;
+}
 h1{
+text-align:center;	
+font-size:30px !IMPORTANT;
 color:green;
 }
+h2{
+text-align:center;	
+font-size:30px !IMPORTANT;
+color:green;
+}
+#gameslistdiv img{
+}
+#gameslistdiv table {
+border: 3px solid black;
+border-collapse: collapse;
+border-spacing: 2px;
+border-color: gray
+}
 #transtop{
-
-
-  top:0px;
+top:0px;
 background: red;
 height:100px;
+}
+#gameslistdiv tr{
+padding-bottom:500px;
+}
+th{
+border-color:black;
+border:5px;
+}
+td{
+padding-bottom:3px !IMPORTANT;
+padding-top:3px !IMPORTANT;
+}
+td, th {
+border: 3px solid black !IMPORTANT;
+text-align:center !IMPORTANT;
+width:200px;
+display: table-cell;
+vertical-align: inherit
+}
+#gameslistdiv thead {
+display: table-header-group;
+vertical-align: middle;
+border-color: inherit
+}
+
+#gameslistdiv tbody {
+display: table-row-group;
+vertical-align: middle;
+border-color: inherit
 }
 #banner img{
 position:fixed;
@@ -19,99 +66,151 @@ width:100%;
 height:150px;
 z-index:10;
 }
-.topnav {
-    
-    overflow: hidden;
-}
 #mytopnav{
+width:100%;
 top:150;
 position:fixed;
-width:100%;
 z-index:10;
 }
+#mytopnav button{
+float:right;
+}
 #main{
-
 background: linear-gradient(white, green);
 position:relative;
 top:202px;
+}
+#mynavbar ul a{
+list-style-type: none;
+margin: 0;
+}
+#bgdiv{
+background-repeat: repeat-y;
+}
+@media (min-width: 1000px)
+.navbar-collapse.collapse {
+display:none;
+}
+#loggedintab{
+width:auto;
+float:left;
+}
+#loggedintab a{
+border-radius:5px 0 5px 5px;
+margin-left:16px;
+text-decoration: none;
+color:black;
+}
+#loggedintab h1{
+margin-top:-10px;
+margin-bottom:0px;
+text-decoration:!IMPORTANT;
+font-size:18px !IMPORTANT;
+}
+#add_game_form  li{
+border: 2px solid black;
 
 }
+#add_game_form textarea{
+text-align:center;
+width:50%;
 
+}
+.form_div{
+border: 2px solid black;
+border-radius:5px;
+}
+.topnav {
+overflow: hidden;
+}
+.navbar-toggle .icon-bar{
+background-color:white;
+}
+.form_div table{
+border-radius:15px;
+}
+.form_div table, th, td{
+border: 2px solid black;
+border-radius:5px;
+}
+.form_div table button{
+text-align:center;
+}
 .navbar-collapse.in{
 transition:0.2s;
 background-color:black;
-
 }
-
+.navbar{
+border:0px !important;
+}
 .navbar-nav{
 float:none; !important
 }
 .navbar-header{
 float:none; !important
 }
-
 /* Style the links inside the navigation bar */
 .topnav a {
-
-    float:left;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
+transition:0.5s;
+float:left;
+display: block;
+color: #f2f2f2;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+font-size: 17px;
 }
-
+.topnav a:first-child {
+border-radius:0 0 0 5px;
+}
+.topnav a:last-child {
+border-radius:0 0 5px 0;
+}
 /* Change the color of links on hover */
 .topnav a:hover:not(:first-child) {
-	
-	transition:height 2s, 1.5s;
-	box-shadow:inset 0px -19px 0.6px rgba(12, 255, 0, 1);
-    text-decoration: none;
-    color: white;
+transition:height 2s, 1.5s;
+box-shadow:inset 0px -19px 0.6px rgba(12, 255, 0, 1);
+text-decoration: none;
+color: white;
 }
-
 /* Add an active class to highlight the current page */
 .active {
-    background-color: #4CAF50;
-    color: white;
+background-color: #4CAF50;
+color: white;
 }
-
 /* Hide the link that should open and close the topnav on small screens */
 .topnav .icon {
-    display: none;
+display: none;
 }
 .topnav a:nth-last-child(1){
-float:right;
+/*float:right;*/
 }
 .topnav a img{
-width:55px;
-height:35px;
+width:45px;
+height:24px;
 }
 .topnav a:nth-last-child(2){
-float:right;
 }
-
+/* Stary background rules */
 .parallax { 
 z-index:-10;
-    /* The image used */
-	position:relative;
-  top:0px;
-
+/* The image used */
+position:relative;
+top:0px;
+background-size: auto 100%;
 }
-
 .parallax img{ 
+ background-size: auto 100%;
     /* The image used */
-	background-attachment: scroll;
- top:0px;
+background-attachment: scroll;
+top:0px;
 z-index:-10;
 position:absolute;
     /* Set a specific height */
-    height: auto; 
-	width:100%;
+height: auto; 
+width:100%;
     /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: repeat-y;
-    background-size: cover;
+background-attachment: fixed;
+background-position: center;
+background-repeat: repeat-y;
 }
