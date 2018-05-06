@@ -73,6 +73,8 @@ INSTALLED_APPS = [
 	'cg',
 	'djangorest',
 	'multiselectfield',
+	
+	
 ]
 
 MIDDLEWARE = [

@@ -26,6 +26,12 @@
 		<!-- logo for tab -->
 		<link rel="icon" href="{% static 'bannerpiclogo.png' %}" alt="mylogo">
 		
+		<!-- Links for Pusher-->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="//js.pusher.com/4.1/pusher.min.js"></script>
+		
+		
 	</head>
 	<body style="background-image: url('{% static "stary.png"%}')";>
 	
@@ -50,7 +56,7 @@
 				
 					<nav class="navbar navbar">
 						<div class="navbar-header">
-							<button type="button" class="navbar-toggle  navbar-inverse" data-toggle="collapse" data-target="#myNavbar">
+							<button type="button" class="navbar-toggle navbar-collapse-sm navbar-inverse" data-toggle="collapse" data-target="#myNavbar">
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span> 
@@ -61,9 +67,9 @@
 						
 									<a href ="home"><img src="{% static 'bannerpiclogo.png' %}" alt="mylogo"/></a>	
 									<a href="home">Home</a>
-									<a href="about">About</a>
 									<a href="news">News</a>
-									<a href="trends">Check Trends</a>
+									<a href="userarticles">User Articles</a>
+									<a href="chat">Chat</a>
 									<a href="gamescolpage">View games collection</a>
 									<a href="AddGames">Add to games list</a>
 									<a href="gameslists">Games</a>
@@ -109,14 +115,33 @@ $(document).ready(function(){
 	  if (scroll > 50) {
 	    $(".topnav a").css("background" , "#001A35");
 		$("#loggedintab a").css("background" , "#ffffff");
+		$("#loggedintab a").css("color" , "#000000");
 	  }
 
 	  else{
-		  $(".topnav a").css("background" , "00");  	
+		$(".topnav a").css("background" , "none");
+		$("#loggedintab a").css("background-color" , "none");
+		$("#loggedintab a").css("color" , "#000000");	
 	  }
   })
 })
+
+/*$(document).ready(function() {
+  $(".navbar-toggle").click(function() {
+    var p = $(".topnav a").css("background-color", "#001A35");
+    p.show(1500);
+    
+  });
+});*/
 </script>
+		{% block gamesdatacontent %}
+		{% endblock %}
+		{% block gamescolcontent %}
+		{% endblock %}
+		{% block chatcontent %}
+		{% endblock %}
+		{% block addarticles %}
+		{% endblock %}
 		{% block addgames %}
 		{% endblock %}
 		{% block welcomecontent %}

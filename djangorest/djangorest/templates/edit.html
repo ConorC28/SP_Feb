@@ -26,15 +26,15 @@
 			<div class = "row">
 			
 				<div class="col-lg-12">
-					
-				<h2>Edit Profile details</h2>
-				
-				<form method="POST">
-					{% csrf_token %}
-					{{ form.as_p }}
-					<button type = "submit">Update details</button>
-				</form>
-								
+					<div id = "editdetailsdiv">
+						<h2>Edit Profile details</h2>
+						
+						<form method="POST">
+							{% csrf_token %}
+							{{ form.as_p }}
+							<button type = "submit">Update details</button>
+						</form>
+					</div>			
 				</div>
 			</div>
 	</div>

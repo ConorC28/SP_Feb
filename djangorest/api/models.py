@@ -5,9 +5,8 @@ from django.contrib.auth.models import User
 from multiselectfield import MultiSelectField          # Allows user multichoice for model, console - pip install django-multiselectfield
 from django.forms import ModelForm
 
-CONSOLE_CHOICES = (
-				('Playstation', 'Playstation'), # The first element is what is added to the db and the second is what displays for the user selection
-				('PC', 'PC'),
+CONSOLE_CHOICES = (				
+				('PC', 'PC'),# The first element is what is added to the db and the second is what displays for the user selection
 				('Commodore 64', 'Commodore 64'),
 				('Nes', 'Nes'),
 				('N64', 'N64'),
@@ -65,7 +64,7 @@ RATING_CHOICES = (('0.5', '0.5'), # The first element is what is added to the db
 class Gameslist(models.Model):
 	title = models.CharField(max_length=225, blank=False, unique=False)
 	console = MultiSelectField(choices=CONSOLE_CHOICES)
-	user_rating = MultiSelectField(choices=RATING_CHOICES)
+	user_rating = models.CharField(max_length=225, blank=False, unique=False,choices=RATING_CHOICES)
 	#collector_status = MultiSelectField(choices=COLLECTOR_STATUS_CHOICES)
 	#release_date = models.DateField(default=datetime.now, blank=True)
 	release_date = models.DateField(blank=True, null=True)
@@ -88,5 +87,42 @@ class GameslistForm(ModelForm):
 		"""Return a human readable version"""
 		return "{}".format(self.name)
 	
-
+class Articleslist(models.Model):
+	title = models.CharField(max_length=225, blank=False, unique=False)
+	content = models.CharField(max_length=10000, blank=False, unique=False)
+	owner = models.ForeignKey('auth.User',
+	related_name='articleslist',
+	on_delete=models.CASCADE)
+	date_created = models.DateTimeField(auto_now_add=True)
+	date_modified = models.DateTimeField(auto_now=True)
 # Create your models here.
+
+class ArticleslistForm(ModelForm):
+	class Meta:
+		model = Articleslist()
+		fields = "__all__"
+	
+	
+	def __str__(self):
+		"""Return a human readable version"""
+		return "{}".format(self.name)
+		
+class Newslist(models.Model):
+	title = models.CharField(max_length=225, blank=False, unique=False)
+	content = models.CharField(max_length=10000, blank=False, unique=False)
+	owner = models.ForeignKey('auth.User',
+	related_name='newslist',
+	on_delete=models.CASCADE)
+	date_created = models.DateTimeField(auto_now_add=True)
+	date_modified = models.DateTimeField(auto_now=True)
+# Create your models here.
+
+class NewslistForm(ModelForm):
+	class Meta:
+		model = Newslist()
+		fields = "__all__"
+	
+	
+	def __str__(self):
+		"""Return a human readable version"""
+		return "{}".format(self.name)

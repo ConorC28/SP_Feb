@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+<html>
+    <head>
+        <title>
+        </title>
+    </head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="//js.pusher.com/4.1/pusher.min.js"></script>
+  
+	
+	{% block chatcontent %}
+	
+    <body>
+        <div class="container" id = "main">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-comment"></span> Chat
+                </div>
+                <div class="panel-body">
+            <!-- ul element holding chat messages -->
+                    <ul class="chat" id="chat">
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+        <!-- text imput fot the messages to be typed into -->
+                        <input id="btn-input" class="form-control input-sm" placeholder="Type your message here..." type="text">
+                        <span class="input-group-btn">
+        <!--- send button for the chat box -->
+                            <button class="btn btn-success btn-sm" id="btn-chat">
+                                Send</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    //initiate puhser with your application key and 
+    var pusher = new Pusher('1f1bc9d8a82330c22c7d', {
+		cluster: 'eu',
+      encrypted: true
+	});
+    //subscribe to the channel you want to listen to
+    var my_channel = pusher.subscribe('a_channel');
+    //wait for an event to be triggered in that channel
+    my_channel.bind("an_event", function (data) {
+        // declare a variable new_message to hold the new chat messages
+        var new_message = `<li class="left clearfix"><span class="chat-img pull-left">
+                            <img src="http://placehold.it/50/55C1E7/fff&text=`+data.name+`" alt="User Avatar" class="img-circle">
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">`+data.name+`</strong> <small class="pull-right text-muted">
+                                </div>
+                                <p>
+                                   `+data.message+`
+                                </p>
+                            </div>
+                        </li>`;
+     //append the new message to the ul holding the chat messages
+    $('#chat').append(new_message);
+    });
+    //wait until the DOM is fully ready
+    $(document).ready(function(){
+    //add event listener to the chat button click 
+        $("#btn-chat").click(function(){
+    //get the currently typed message
+             var message = $('#btn-input').val();
+
+            $.post({
+                url: '/ajax/chat/',
+                data: {
+                'message': message
+                },
+                success: function (data) {
+
+                    $('#btn-input').val('');
+
+                }
+            });
+
+        })
+    })
+
+</script>
+{% endblock %}
+</body>
+
+
+
+</html>
+

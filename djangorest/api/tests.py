@@ -11,7 +11,7 @@ class ViewTestCase(TestCase):
 	def setUp(self):
 	
 		self.client = APIClient()
-		self.gameslist_data = {'title':'Zelds'}
+		self.gameslist_data = {'title':'Zelda'}
 		self.response = self.client.post(
 			reverse('create'),
 			self.gameslist_data,

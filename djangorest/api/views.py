@@ -1,4 +1,8 @@
 from rest_framework import generics
+from api.models import Newslist
+from .serializers import NewslistSerializer
+from api.models import Articleslist
+from .serializers import ArticleslistSerializer
 from .serializers import GameslistSerializer
 from .models import Gameslist
 from django.http import HttpResponse
@@ -14,6 +18,8 @@ from rest_framework import serializers
 #from api.serializers import UserSerializer
 from rest_framework import status
 from .permissions import IsOwnerOrReadOnly
+
+
 
 #from django.contrib.auth.form import UserCreationForm
 
@@ -33,8 +39,35 @@ from .permissions import IsOwnerOrReadOnly
   #          user = serializer.save()
  #           if user:
 #                return Response(serializer.data, status=status.HTTP_201_CREATED)
+class CreateNewsView(generics.ListCreateAPIView):
+	queryset = Newslist.objects.all()
+	serializer_class = NewslistSerializer
+	permission_classes = (permissions.IsAdminUser,)
 
-class CreateView(generics.ListCreateAPIView):
+	def perform_create(self, serializer):
+		serializer.save(owner=self.request.user)			
+	
+class NewsDetailsView(generics.RetrieveUpdateDestroyAPIView):
+	queryset = Newslist.objects.all()
+	serializer_class = NewslistSerializer
+	permission_classes = (IsOwnerOrReadOnly,)
+	
+
+class CreateArticleView(generics.ListCreateAPIView):
+	queryset = Articleslist.objects.all()
+	serializer_class = ArticleslistSerializer
+	permission_classes = (permissions.IsAuthenticated,)
+
+	def perform_create(self, serializer):
+		serializer.save(owner=self.request.user)			
+	
+class ArticleDetailsView(generics.RetrieveUpdateDestroyAPIView):
+	queryset = Articleslist.objects.all()
+	serializer_class = ArticleslistSerializer
+	permission_classes = (IsOwnerOrReadOnly,)
+	
+
+class CreateGameView(generics.ListCreateAPIView):
 	queryset = Gameslist.objects.all()
 	serializer_class = GameslistSerializer
 	permission_classes = (permissions.IsAuthenticated,)
@@ -46,7 +79,7 @@ class CreateView(generics.ListCreateAPIView):
 		if request.method == 'POST':
 			form = ImageUploadForm(request.POST, request.FILES)
 			if form.is_valid():
-				m = ExampleModel.objects.get(pk=course_id)
+				m = ExampleModel.objects.get(pk=user_id)
 				m.game_pic = form.cleaned_data['image']
 				m.save()
 				return HttpResponse('image upload success')
@@ -60,7 +93,7 @@ class CreateView(generics.ListCreateAPIView):
      #                            email='jlennon@beatles.com',
       #                           password='glass onion')
 		
-class DetailsView(generics.RetrieveUpdateDestroyAPIView):
+class GameDetailsView(generics.RetrieveUpdateDestroyAPIView):
 	queryset = Gameslist.objects.all()
 	serializer_class = GameslistSerializer
 	permission_classes = (IsOwnerOrReadOnly,)

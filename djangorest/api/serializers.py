@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import Gameslist
+from .models import Articleslist
+from .models import Newslist
 from rest_framework.validators import UniqueValidator
 
 
@@ -32,3 +34,20 @@ class GameslistSerializer(serializers.ModelSerializer):
 		fields = ('id', 'title', 'console', 'user_rating', 'release_date', 'description', 'fond_memories', 'game_pic', 'owner', 'date_created','date_modified')
 		read_only_fields = ('date_modified', 'date_crereated')
 
+class ArticleslistSerializer(serializers.ModelSerializer):
+	owner = serializers.ReadOnlyField(source='owner.username')
+
+	class Meta:
+		"""Meta class to map serializers fields with the model fields"""
+		model = Articleslist
+		fields = ('id', 'title', 'content', 'owner', 'date_created','date_modified')
+		read_only_fields = ('date_modified', 'date_crereated')
+		
+class NewslistSerializer(serializers.ModelSerializer):
+	owner = serializers.ReadOnlyField(source='owner.username')
+
+	class Meta:
+		"""Meta class to map serializers fields with the model fields"""
+		model = Newslist
+		fields = ('id', 'title', 'content', 'owner', 'date_created','date_modified')
+		read_only_fields = ('date_modified', 'date_crereated')

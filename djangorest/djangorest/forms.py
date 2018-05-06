@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from multiselectfield import MultiSelectField          # Allows user multichoice for model, console - pip install django-multiselectfield
 from django.forms import ModelForm
 from api.models import Gameslist
+from api.models import Articleslist
 
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm # Import to allow custom user creation form
 
@@ -15,11 +16,15 @@ class EditProfileForm(UserChangeForm):
 	class Meta:
 		model = User
 		fields =  (
+			'username',
 			'first_name',
 			'last_name',
 			'email',
 			'password'
+			
 		)
+	
+		
 								# Form to create user
 class RegistrationForm(UserCreationForm):
 	email = forms.EmailField(required=True)
@@ -32,7 +37,7 @@ class RegistrationForm(UserCreationForm):
 			'last_name',
 			'email',
 			'password1',
-			'password2'
+			
 		)
 	
 	def save(self, commit=True):
@@ -51,7 +56,17 @@ class UploadGameForm(forms.ModelForm):
 	class Meta:
 		model = Gameslist
 		
-		fields = "__all__"
+		fields = ('title','console','user_rating','release_date','description','fond_memories','game_pic',)
+		#model.fond_memories = forms.CharField(widget=forms.Textarea)
+		title = models.CharField(max_length=100)
+		#game_pic = models.FileField(upload_to = 'game_image', default = 'game_image')
+
+class UploadArticleForm(forms.ModelForm):
+
+	class Meta:
+		model = Articleslist
 		
+		fields = ('title','content')
+	
 	
 	

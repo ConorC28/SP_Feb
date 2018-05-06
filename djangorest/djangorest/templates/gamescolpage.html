@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Howdy!</title>
+        <title></title>
 		
 		<!-- jQuery library -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -21,7 +21,7 @@
     </head>
     <body>
 	
-	{% block aboutcontent %}
+	{% block gamescolcontent %}
 	
 <div class ="container" id = "main">
 	<div class = "row">
@@ -30,12 +30,21 @@
 				
 				
 				
-			<h1>Add to your Games list</h1>
+			<h1>The Collection</h1>
 		<p>
-		Add the latest additions to your collection! MWOE
+			Here is the full list of our users collection
 		</p>
-			<div id = "gameslistdiv">
+		
+		<form method='GET' action=''>
+		<input ='text' name='q' placeholder='Search Games' value='{{ request.GET.q}}'/>
+		<input type='submit' value='Search'/>
+		</br>
+		<a href="gamesdata">Collection Data</a>
 			
+		
+			<div id = "gameslistdiv" style="overflow-x:auto;">
+			
+			<h1></h1>
 				<table>
 					<thead>
 						<tr>
@@ -57,15 +66,17 @@
 							<h1> {{gameslist.gameslist}} </h1>
 							<td>{{gameslist.id}} </td>
 							<td>{{gameslist.title}} </td>
-							<td><img src="{{ gameslist.game_pic.url }}" width = "175" alt = "game_pic"></td>
+							<td><img src="{{ gameslist.game_pic.url }}" width = "125" alt = "game_pic"></td>
 							<td>{{gameslist.console}} </td>
 							<td>{{gameslist.user_rating}} </td>
 							<td>{{gameslist.release_date}} </td>
 							<td>{{gameslist.description}} </td>
 							<td>{{gameslist.fond_memories}} </td>
-							<td>{{gameslist.owner}} </td>
+							<td>{{gameslist.owner}} <a href="otherusersgames"></td>
 					
 						</tr>
+						
+						<!--<h1>View {{gameslist.owner}}'s list</h1></a> -->
 					
 					</tbody>
 					

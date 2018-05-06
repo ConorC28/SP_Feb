@@ -26,15 +26,21 @@
 			<div class = "row">
 			
 				<div class="col-lg-12">
-					<h1>Welcome to the about page</h1>
+					<h1>Join Us!!!</h1>
 						<div class = "form_div">
 						<table align="center">
+							
 							<form method="post">
 								{% csrf_token %}
 								{{ form.as_table }}
 								<button type="submit" align="center">Submit</button>
 							</form>
 							</table>
+							{% if badlogcred %}
+								<div id="badcred" title="Password does not match">
+									<h1 style = "color:red;">bad user creation data please try again</h1>
+								</div>
+							{% endif %}
 						</div>
 				<p>
 				Gaming has a hugh catalogue, nowadays more than ever! Here we appreciate the timeless 

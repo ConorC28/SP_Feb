@@ -1,7 +1,11 @@
 from django.conf.urls import url, include
 from rest_framework.urlpatterns import format_suffix_patterns
-from .views import CreateView
-from .views import DetailsView
+from .views import CreateNewsView
+from .views import CreateGameView
+from .views import CreateArticleView
+from .views import GameDetailsView
+from .views import ArticleDetailsView
+from .views import NewsDetailsView
 from django.views.static import serve
 
 from django.conf.urls import url, include
@@ -30,14 +34,29 @@ from django.contrib.auth.views import (
 from djangorest import urls
 
 from djangorest.views import AddGames
+from djangorest.views import AddArticles
 
 urlpatterns = {
 	url(r'^log/', include('rest_framework.urls',
 		namespace='rest_framework')),
-	url(r'^gameslists/$', CreateView.as_view(), name="create"),
+		
+	url(r'^nlists/$', CreateNewsView.as_view(), name="createn"),
+	url(r'^nlists/(?P<pk>[0-9]+)/$',
+		NewsDetailsView.as_view(), name="detailsn"),
+		
+	url(r'^articleslists/$', CreateArticleView.as_view(), name="createa"),
+	url(r'^articleslists/(?P<pk>[0-9]+)/$',
+		ArticleDetailsView.as_view(), name="detailsa"),
+		
+	url(r'^gameslists/$', CreateGameView.as_view(), name="create"),
 	url(r'^gameslists/(?P<pk>[0-9]+)/$',
-		DetailsView.as_view(), name="details"),
-	url(r'^gameslists/$', CreateView.as_view(), name='gameslist'),
+		GameDetailsView.as_view(), name="detailsg"),
+	
+	url(r'^gameslists/$', CreateGameView.as_view(), name='gameslist'),
+	
+	url(r'^chat', views.chat),
+	url(r'^ajax/chat/$', views.broadcast),
+	
 	
 	#url(r'^', include('django.contrib.auth.urls')),
 	url(r'^', include('djangorest.urls')),
@@ -47,7 +66,11 @@ urlpatterns = {
 	url(r'about',views.about, name='about'),
 	url(r'news',views.news, name='news'),
 	url(r'AddGames',AddGames.as_view(), name='AddGames'),
+	url(r'AddArticles',AddArticles.as_view(), name='AddArticles'),
+	url(r'userarticles',views.userarticles, name='userarticles'),
+	#url(r'otherusersgames',views.otherusersgames, name='oug'),
 	url(r'gamescolpage',views.gamescolpage, name='gamescolpage'),
+	url(r'gamesdata',views.gamesdata, name='gamesdata'),
 	url(r'login',login, {'template_name':'login.html'}),
 	url(r'trends',views.trends, name='trends'),
 	url(r'register',views.register, name='register'),
@@ -55,7 +78,7 @@ urlpatterns = {
 	url(r'profile',views.profile, name='profile'),
 	url(r'edit',views.edit, name='edit'),
 	url(r'usergames',views.usergames, name='usergames'),
-	url(r'changepassword',views.changepassword, name='changepassword'),
+	url(r'password',views.changepassword, name='changepassword'),
 	url(r'resetpassword/$',password_reset, name='reset_password'),
 	url(r'resetpassworddone/$',password_reset_done, name='password_reset_done'),
 	url(r'resetpasswordconfirm/$',
