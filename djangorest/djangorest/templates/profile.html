@@ -41,7 +41,7 @@
 				
 			</div>
 			
-			<div id = "usergameslistdiv">
+			<div id = "usergameslistdiv" style="overflow-x:auto;">
 			
 				<table>
 					<thead>
@@ -50,11 +50,12 @@
 							<th>Title</th>
 							<th>Box Art</th>
 							<th>Console</th>
-							<th>Owners Rating</th>
+							<th>Score</th>
 							<th>Release Date</th>
 							<th>Owner Description</th>
 							<th>Fond Memories</th>
 							<th>Uploader</th>
+							<th>Options</th>
 						</tr>
 					</thead>	
 					<tbody>
@@ -66,12 +67,16 @@
 							<td>{{gameslist.title}} </td>
 							<td><img src="{{ gameslist.game_pic.url }}" width = "175" alt = "game_pic"></td>
 							<td>{{gameslist.console}} </td>
-							<td>{{gameslist.user_rating}} </td>
+							<td>{{gameslist.score}}% </td>
 							<td>{{gameslist.release_date}} </td>
 							<td>{{gameslist.description}} </td>
 							<td>{{gameslist.fond_memories}} </td>
-							<td>{{gameslist.owner}} </td>
-					
+							<td>{{gameslist.owner}}</td>
+							<td>
+							<a href="{% url 'editgame' id=gameslist.id %}">Edit Details </a>
+								<p></p>
+							<a href="{% url 'deletegame' id=gameslist.id %}" class = "del">Delete Game </a>
+							</td>
 						</tr>
 					
 					</tbody>

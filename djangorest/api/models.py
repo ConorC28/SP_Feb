@@ -4,6 +4,8 @@ from rest_framework.validators import UniqueValidator
 from django.contrib.auth.models import User
 from multiselectfield import MultiSelectField          # Allows user multichoice for model, console - pip install django-multiselectfield
 from django.forms import ModelForm
+from django.core.validators import MinValueValidator
+from django.core.validators import MaxValueValidator
 
 CONSOLE_CHOICES = (				
 				('PC', 'PC'),# The first element is what is added to the db and the second is what displays for the user selection
@@ -35,36 +37,43 @@ CONSOLE_CHOICES = (
 				('Microsoft Xbox360', 'Microsoft Xbox360'),
 				('Microsoft XboxONE', 'Microsoft XboxONE'))
 				
-RATING_CHOICES = (('0.5', '0.5'), # The first element is what is added to the db and the second is what displays for the user selection
-				('1.0', '1.0'),
-				('1.5', '1.5'),
-				('2.0', '2.0'),
-				('2.5', '2.5'),
-				('3.0', '3.0'),
-				('3.5', '3.5'),
-				('4.0', '4.0'),
-				('4.5', '4.5'),
-				('5.0', '5.0'),
-				('5.5', '5.5'),
-				('6.0', '6.0'),
-				('6.5', '6.5'),
-				('7.0', '7.0'),
-				('7.5', '7.5'),
-				('8.0', '8.0'),
-				('8.5', '8.5'),
-				('9.0', '9.0'),
-				('9.5', '9.5'),
-				('10', '10'))
+#RATING_CHOICES = (('0.5', '0.5'), # The first element is what is added to the db and the second is what displays for the user selection
+#				('1.0', '1.0'),
+#				('1.5', '1.5'),
+#				('2.0', '2.0'),
+#				('2.5', '2.5'),
+#				('3.0', '3.0'),
+#				('3.5', '3.5'),
+#				('4.0', '4.0'),
+#				('4.5', '4.5'),
+#				('5.0', '5.0'),
+#				('5.5', '5.5'),
+#				('6.0', '6.0'),
+#				('6.5', '6.5'),
+#				('7.0', '7.0'),
+#				('7.5', '7.5'),
+#				('8.0', '8.0'),
+#				('8.5', '8.5'),
+#				('9.0', '9.0'),
+#				('9.5', '9.5'),
+#				('10', '10'))
 				
 
 #COLLECTOR_STATUS_CHOICES = (('item_key1', 'Keeping'),
 #			('item_key2', 'Trading'),
 #			('item_key3', 'Selling'))
 		
+#class UserProfile(models.Model):
+ #   user   = models.OneToOneField(User, on_delete=models.CASCADE)
+  #  image = models.ImageField(upload_to = 'profile_image', default = 'profile_image')
+
+	
+		
 class Gameslist(models.Model):
 	title = models.CharField(max_length=225, blank=False, unique=False)
 	console = MultiSelectField(choices=CONSOLE_CHOICES)
-	user_rating = models.CharField(max_length=225, blank=False, unique=False,choices=RATING_CHOICES)
+	score = models.PositiveIntegerField(default=10, blank=False, unique=False, validators=[MinValueValidator(1), MaxValueValidator(100)])
+	#user_rating = models.CharField(max_length=225, blank=False, unique=False,choices=RATING_CHOICES)
 	#collector_status = MultiSelectField(choices=COLLECTOR_STATUS_CHOICES)
 	#release_date = models.DateField(default=datetime.now, blank=True)
 	release_date = models.DateField(blank=True, null=True)
@@ -88,13 +97,17 @@ class GameslistForm(ModelForm):
 		return "{}".format(self.name)
 	
 class Articleslist(models.Model):
-	title = models.CharField(max_length=225, blank=False, unique=False)
-	content = models.CharField(max_length=10000, blank=False, unique=False)
+	title = models.CharField(max_length=225, unique=False)
+	content1 = models.CharField(default="",max_length=10000, unique=False)
+	content2 = models.CharField(default="",max_length=10000, unique=False)
+	content3 = models.CharField(default="",max_length=10000, unique=False)
+	content4 = models.CharField(default="",max_length=10000, unique=False)
 	owner = models.ForeignKey('auth.User',
 	related_name='articleslist',
 	on_delete=models.CASCADE)
 	date_created = models.DateTimeField(auto_now_add=True)
 	date_modified = models.DateTimeField(auto_now=True)
+	
 # Create your models here.
 
 class ArticleslistForm(ModelForm):
@@ -108,8 +121,11 @@ class ArticleslistForm(ModelForm):
 		return "{}".format(self.name)
 		
 class Newslist(models.Model):
-	title = models.CharField(max_length=225, blank=False, unique=False)
-	content = models.CharField(max_length=10000, blank=False, unique=False)
+	title = models.CharField(max_length=225, unique=False)
+	content1 = models.CharField(default="hgjg",max_length=10000, unique=False)
+	content2 = models.CharField(default="hj",max_length=10000, unique=False)
+	content3 = models.CharField(default="ghjghj",max_length=10000, unique=False)
+	content4 = models.CharField(default="hjg",max_length=10000, unique=False)
 	owner = models.ForeignKey('auth.User',
 	related_name='newslist',
 	on_delete=models.CASCADE)

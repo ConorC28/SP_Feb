@@ -20,19 +20,24 @@
 		
     </head>
     <body>
-	{% block body %}
+	{% block ougbody %}
 	
 	<div class ="container" id = "main">
 			<div class = "row">
 			
 				<div class="col-lg-12">
 					
-				<h2>Profile details</h2>
+				<h2>Game Details</h2>
 				
-				<h2>Username: {{user}}<h2>
-				<h2>First Name: {{user.first_name}}<h2>
-				<h2>Last Name: {{user.last_name}}<h2>
-				<h2>Email Address: {{user.email}}<h2>
+				<h2>Game Title: {{gameslist.title}}<h2>
+				<h2>Box art: <img src="{{ gameslist.game_pic.url }}" width = "175" alt = "game_pic"><h2>
+				<h2>Console: {{gameslist.console}}<h2>
+				<h2>Owner Score: {{gameslist.score}}%<h2>
+				<h2>Release Date: {{gameslist.release_date}}<h2>
+				<h2>Description: {{gameslist.description}}<h2>
+				<h2>Fond Memories: {{gameslist.fond_memories}}<h2>
+				<h2>Uploaded by: {{gameslist.owner}}<h2>
+				
 								
 				</div>
 				
@@ -41,46 +46,7 @@
 			
 			<div id = "usergameslistdiv">
 			
-				<table>
-					<thead>
-						<tr>
-							<th>ID</th>
-							<th>Title</th>
-							<th>Box Art</th>
-							<th>Console</th>
-							<th>Owners Rating</th>
-							<th>Release Date</th>
-							<th>Owner Description</th>
-							<th>Fond Memories</th>
-							<th>Uploader</th>
-						</tr>
-					</thead>	
-					<tbody>
-						<tr>
-						
-							{% for gameslist in gameslists%}
-							<h1> {{gameslist.gameslist}} </h1>
-							<td>{{gameslist.id}} </td>
-							<td>{{gameslist.title}} </td>
-							<td><img src="{{ gameslist.game_pic.url }}" width = "175" alt = "game_pic"></td>
-							<td>{{gameslist.console}} </td>
-							<td>{{gameslist.user_rating}} </td>
-							<td>{{gameslist.release_date}} </td>
-							<td>{{gameslist.description}} </td>
-							<td>{{gameslist.fond_memories}} </td>
-							<td>{{gameslist.owner}} </td>
-					
-						</tr>
-					
-					</tbody>
-					
-					
-					
-					
-				{% endfor %}
 				
-					
-				</table>
 				
 			</div>
 	</div>

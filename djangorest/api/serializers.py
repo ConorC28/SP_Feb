@@ -31,7 +31,7 @@ class GameslistSerializer(serializers.ModelSerializer):
 	class Meta:
 		"""Meta class to map serializers fields with the model fields"""
 		model = Gameslist
-		fields = ('id', 'title', 'console', 'user_rating', 'release_date', 'description', 'fond_memories', 'game_pic', 'owner', 'date_created','date_modified')
+		fields = ('id', 'title', 'console', 'score', 'release_date', 'description', 'fond_memories', 'game_pic', 'owner', 'date_created','date_modified')
 		read_only_fields = ('date_modified', 'date_crereated')
 
 class ArticleslistSerializer(serializers.ModelSerializer):
@@ -40,7 +40,7 @@ class ArticleslistSerializer(serializers.ModelSerializer):
 	class Meta:
 		"""Meta class to map serializers fields with the model fields"""
 		model = Articleslist
-		fields = ('id', 'title', 'content', 'owner', 'date_created','date_modified')
+		fields = ('id', 'title', 'content1', 'content2','content3','content4', 'owner', 'date_created','date_modified')
 		read_only_fields = ('date_modified', 'date_crereated')
 		
 class NewslistSerializer(serializers.ModelSerializer):
@@ -49,5 +49,5 @@ class NewslistSerializer(serializers.ModelSerializer):
 	class Meta:
 		"""Meta class to map serializers fields with the model fields"""
 		model = Newslist
-		fields = ('id', 'title', 'content', 'owner', 'date_created','date_modified')
+		fields = ('id', 'title', 'content1', 'content2','content3','content4', 'owner', 'date_created','date_modified')
 		read_only_fields = ('date_modified', 'date_crereated')

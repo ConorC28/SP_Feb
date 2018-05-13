@@ -56,7 +56,7 @@
 				
 					<nav class="navbar navbar">
 						<div class="navbar-header">
-							<button type="button" class="navbar-toggle navbar-collapse-sm navbar-inverse" data-toggle="collapse" data-target="#myNavbar">
+							<button type="button" class="navbar-toggle navbar-collapse navbar-inverse" data-toggle="collapse" data-target="#myNavbar">
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span> 
@@ -68,37 +68,48 @@
 									<a href ="home"><img src="{% static 'bannerpiclogo.png' %}" alt="mylogo"/></a>	
 									<a href="home">Home</a>
 									<a href="news">News</a>
+									<a href="gamescol">Games Collection</a>
 									<a href="userarticles">User Articles</a>
-									<a href="chat">Chat</a>
-									<a href="gamescolpage">View games collection</a>
-									<a href="AddGames">Add to games list</a>
-									<a href="gameslists">Games</a>
+									{% if request.user.is_authenticated %}
+									
+									
+									<div class="dropdown">
+										<button class="dropbtn">Features</button>
+										<div class="dropdown-content">
+											<a href="chat">Chat</a>
+											<a href="AddGames">Add to Games</a>
+											<a href="AddArticles">Add to Articles</a>
+										</div>
+										
+									</div>	
+									<a href="/log/logout/?next=/home">logout</a>
+									{% else %}
 									<a href="login">Login</a>
+									
 									<a href="register">Sign up</a>
+									{% endif %}
 									
-									
-							
-								</ul>
+								<ul>
 								
 							</div>
-									{% if request.user %}
+									{% if request.user.is_authenticated %}
 										<div id = "loggedintab">
 										<a href="profile"><h1>{{request.user.username}}'s logged in! View details</h1></a>
 										
-										{% else %}
+										
 									</div>
 									{% endif %}
 									
 									
 						</div>
 						
-						
+							
 					</nav>
 					
 			
 				</div>
 				
-				
+			
 			</div>
 			
 			
@@ -110,18 +121,31 @@
 		<!-- Jquery to change the nav color when scroll Down -->
 		<script>
 $(document).ready(function(){
+   
+   //if($(window).width()=1000)
+//{
+    //do your stuffs here
+	//$(".topnav a").css("background", "red");
+//}
+ 
   $(window).scroll(function(){
   	var scroll = $(window).scrollTop();
-	  if (scroll > 50) {
+	  if (scroll > 1) {
 	    $(".topnav a").css("background" , "#001A35");
+		$(".dropdown ").css("background" , "#001A35");
 		$("#loggedintab a").css("background" , "#ffffff");
 		$("#loggedintab a").css("color" , "#000000");
+		$("#loggedintab a").css("text-shadow", "none");
+		
+		
 	  }
 
 	  else{
-		$(".topnav a").css("background" , "none");
-		$("#loggedintab a").css("background-color" , "none");
-		$("#loggedintab a").css("color" , "#000000");	
+		$(".topnav a").css("background", "none");
+		$(".dropdown ").css("background" , "none");
+		$("#loggedintab a").css("background-color", "none");
+		$("#loggedintab a").css("color", "#ffffff");
+		$("#loggedintab a").css("text-shadow", "2px 1px #000000");		
 	  }
   })
 })
@@ -134,6 +158,8 @@ $(document).ready(function(){
   });
 });*/
 </script>
+		{% block newscontent %}
+		{% endblock %}
 		{% block gamesdatacontent %}
 		{% endblock %}
 		{% block gamescolcontent %}
@@ -146,8 +172,12 @@ $(document).ready(function(){
 		{% endblock %}
 		{% block welcomecontent %}
 		{% endblock %}
+		{% block ougbody %}
+		{% endblock %}
 		{% block body %}
 		{% endblock %}
+		{% block homecontent %}
+        {% endblock %}
 		{% block pagecontent %}
         {% endblock %} 
 		{% block aboutcontent %}

@@ -35,12 +35,14 @@
 			Here is the full list of our users collection
 		</p>
 		
+		<h4>Queary the collection based on title console or owner</h4>
 		<form method='GET' action=''>
 		<input ='text' name='q' placeholder='Search Games' value='{{ request.GET.q}}'/>
-		<input type='submit' value='Search'/>
-		</br>
+		<input id = "searchbtn" type='submit' value='Search'/>
+		<p></p>
+		<div id = "gamedatabtn">
 		<a href="gamesdata">Collection Data</a>
-			
+		</div>	
 		
 			<div id = "gameslistdiv" style="overflow-x:auto;">
 			
@@ -52,7 +54,7 @@
 							<th>Title</th>
 							<th>Box Art</th>
 							<th>Console</th>
-							<th>Owners Rating</th>
+							<th>Owner Score</th>
 							<th>Release Date</th>
 							<th>Owner Description</th>
 							<th>Fond Memories</th>
@@ -68,15 +70,18 @@
 							<td>{{gameslist.title}} </td>
 							<td><img src="{{ gameslist.game_pic.url }}" width = "125" alt = "game_pic"></td>
 							<td>{{gameslist.console}} </td>
-							<td>{{gameslist.user_rating}} </td>
+							<td>{{gameslist.score}}%</td>
 							<td>{{gameslist.release_date}} </td>
 							<td>{{gameslist.description}} </td>
 							<td>{{gameslist.fond_memories}} </td>
-							<td>{{gameslist.owner}} <a href="otherusersgames"></td>
+							<td>{{gameslist.owner}}
+							<p><a href="{% url 'oug' pk=gameslist.pk %}" >View Game</a></p>
+							</td>
+							
 					
 						</tr>
 						
-						<!--<h1>View {{gameslist.owner}}'s list</h1></a> -->
+						
 					
 					</tbody>
 					

@@ -58,49 +58,41 @@ urlpatterns = {
 	url(r'^ajax/chat/$', views.broadcast),
 	
 	
-	#url(r'^', include('django.contrib.auth.urls')),
+	
 	url(r'^', include('djangorest.urls')),
-	#(?P<uidb64>[a-z0-9]+)-(?P<token>.+)/$'
+	
 	url(r'^$',views.home, name='home'),
-	url(r'home',views.home, name='home'),
-	url(r'about',views.about, name='about'),
-	url(r'news',views.news, name='news'),
-	url(r'AddGames',AddGames.as_view(), name='AddGames'),
-	url(r'AddArticles',AddArticles.as_view(), name='AddArticles'),
-	url(r'userarticles',views.userarticles, name='userarticles'),
-	#url(r'otherusersgames',views.otherusersgames, name='oug'),
-	url(r'gamescolpage',views.gamescolpage, name='gamescolpage'),
-	url(r'gamesdata',views.gamesdata, name='gamesdata'),
-	url(r'login',login, {'template_name':'login.html'}),
-	url(r'trends',views.trends, name='trends'),
-	url(r'register',views.register, name='register'),
-	url(r'welcome',views.welcome, name='welcome'),
-	url(r'profile',views.profile, name='profile'),
-	url(r'edit',views.edit, name='edit'),
-	url(r'usergames',views.usergames, name='usergames'),
-	url(r'password',views.changepassword, name='changepassword'),
-	url(r'resetpassword/$',password_reset, name='reset_password'),
-	url(r'resetpassworddone/$',password_reset_done, name='password_reset_done'),
-	url(r'resetpasswordconfirm/$',
+	url(r'^home',views.home, name='home'),
+	url(r'^about',views.about, name='about'),
+	url(r'^news',views.news, name='news'),
+	url(r'^AddGames$',AddGames.as_view(), name='AddGames'),
+	url(r'^AddArticles$',AddArticles.as_view(), name='AddArticles'),
+	url(r'^gamescol$',views.gamescol, name='gamescol'),
+		url(r'^(?P<pk>\d+)$',views.oug, name='oug'),
+	url(r'^userarticles',views.userarticles, name='userarticles'),
+	url(r'^gamesdata',views.gamesdata, name='gamesdata'),
+	url(r'^login',login, {'template_name':'login.html'}),
+	url(r'^trends',views.trends, name='trends'),
+	url(r'^register',views.register, name='register'),
+	url(r'^welcome',views.welcome, name='welcome'),
+	url(r'^profile$',views.profile, name='profile'),
+		url(r'^editgame(?P<id>\d+)$',views.editgame, name='editgame'),
+		url(r'^deletegame(?P<id>\d+)$',views.deletegame, name='deletegame'),
+	url(r'^edit',views.edit, name='edit'),
+	url(r'^usergames',views.usergames, name='usergames'),
+	url(r'^password',views.changepassword, name='changepassword'),
+	url(r'^resetpassword/$',password_reset, name='reset_password'),
+	url(r'^resetpassworddone/$',password_reset_done, name='password_reset_done'),
+	url(r'%resetpasswordconfirm/$',
 	password_reset_confirm, name='password_reset_confirm(?P<uidb64>[0-9A-Za-z]+)/(?P<token>.+)/$'),
-	url(r'resetpasswordcomplete/$',password_reset_complete, name='password_reset_complete'),
-
-	#(?P<uidb64>[0-9A-Za-z]+)/(?P<token>.+)/$	
-	
-	#url(r'^gameslists/(?P<pk>[0-9]+)/staticfiles/$'),
-	
-	#path('../cd/templates/addgames.html', TemplateView.as_view(template_name=addgames.html)),
-		
-	#url(r'^users/', include('api.urls')),
-	
-
-	#url(r'^$', views.index, name='index'),  #Render out HTML
+	url(r'^resetpasswordcomplete/$',password_reset_complete, name='password_reset_complete'),
+	url(r'^comments/', include('django_comments.urls')),
 	
 	url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
 	url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT})
-	#url(r'^staticfiles')
+	
 } 
 
 
-#urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 urlpatterns = format_suffix_patterns(urlpatterns)

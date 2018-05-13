@@ -28,6 +28,7 @@ STATIC_URL = '/static/'
 
 #STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+
 MEDIA_ROOT = (
 	os.path.join(BASE_DIR, 'media')
 )
@@ -73,6 +74,7 @@ INSTALLED_APPS = [
 	'cg',
 	'djangorest',
 	'multiselectfield',
+	
 	
 	
 ]
@@ -143,7 +145,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Dublin'
 
 USE_I18N = True
 

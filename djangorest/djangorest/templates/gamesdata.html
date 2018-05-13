@@ -25,49 +25,131 @@
 	
 <div class ="container" id = "main">
 	<div class = "row">
-			
+			<!-- Loops below iterate through the different object passed in by the gamesdata view  
+			and values are displayed in tables -->
 		<div class="col-lg-12">
+								
+			<h1>Games Collection Data</h1>
 				
-				
-				
-			<h1>The Collection</h1>
-		<p>
-			Here is our games collection data
-		</p>
-		
-		
-		
-		
-			
-		
-			<div id = "gameslistdiv" style="overflow-x:auto;">
+			<div id = "gamesdatadiv" style="overflow-x:auto;">
 			 <h1>Total number of games in the collection: {{gamescount}}</h1></p>
-			<h1>{{ocount}}</h1>
-			<h1>{{bestgames}}</h1>
-			
-				
-					
+								
 				<h1></h1>
-				<table>
+				<table align="center">
 					<thead>
 						<tr>
 							
 							<th>Title</th>
-							<th>Counted</th>
+							<th>Score</th>
+							
+							
 							
 						</tr>
 					</thead>	
 					<tbody>
 						<tr>
-						
-							{% for gameslist in bestgames%}
-							<h1> {{gameslist.gameslist}} </h1>
-							
+							<h1> Top five based on user score </h1>
+							{% for gameslist in bestgames.all|slice:"0:5" %}
+														
 							<td> {{gameslist.title}} </td>
-							<td> {{ocount.title.count}} </td>
+							<td> {{gameslist.score}}% </td>
+							
 							
 					
 						</tr>
+						
+						<!--<h1>View {{gameslist.owner}}'s list</h1></a> -->
+					
+					</tbody>
+					
+					{% endfor %}
+					
+					
+				<table align="center">
+					<thead>
+						<tr>
+							
+							<th>title</th>
+							<th>score</th>
+														
+							
+						</tr>
+					</thead>	
+					<tbody>
+						<tr>
+							<h1> Worst five based on user score </h1>
+							{% for gameslist in worstgames.all|slice:"0:5" %}
+														
+							<td> {{gameslist.title}} </td>
+							<td> {{gameslist.score}}% </td>
+													
+					
+						</tr>
+						
+						
+					
+					</tbody>
+					
+				
+				
+					{% endfor %}
+				</table>
+				
+					
+					<!--
+				<table align="center">
+					<thead>
+						<tr>
+							
+							<th>console</th>
+							<th>Count</th>
+														
+							
+						</tr>
+					</thead>	
+					<tbody>
+						<tr>
+							<h1> Top 5 based consoles based on games collected for </h1>
+							{% for gameslist in consolecount.all|slice:"0:5" %}
+														
+							<td> {{gameslist.console}} </td>
+							<td> {{gameslist.cnum}} </td>
+													
+					
+						</tr>
+						
+						
+					
+					</tbody>
+					
+				
+				
+					{% endfor %}
+				</table>
+				-->
+				
+				
+				<p></p>
+				
+				<table align="center">
+					<thead>
+						<tr>
+							
+							<th>Title</th>
+							<th>Counted Uploads</th>
+							
+						</tr>
+					</thead>	
+					<tbody>
+						<tr>
+							<h1> Top 5 based on number of times uploaded </h1>
+							{% for gameslist in collectedcount.all|slice:"0:5" %}
+														
+							<td> {{gameslist.lower_title}} </td>
+							<td> {{gameslist.num}} </td>
+					
+						</tr>
+						
 						
 						<!--<h1>View {{gameslist.owner}}'s list</h1></a> -->
 					
@@ -81,6 +163,8 @@
 					
 				</table>
 				
+				
+				<p></p>
 			</div>
 		</div>
 	

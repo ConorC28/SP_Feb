@@ -32,14 +32,14 @@
 					
 					
 						</br>
-						
-						<form method="post">
-							{% csrf_token %}
-							{{ form.as_p }}
-							
-							<button type="submit" align="center">Login</button>
-						</form>
-				
+						<div id = "logindiv">
+							<form method="post">
+								{% csrf_token %}
+								{{ form.as_p }}
+								
+								<button type="submit" >Login</button>
+							</form>
+						</div>
 				</div>
 			</div>
 	</div>
