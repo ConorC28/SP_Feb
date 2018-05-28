@@ -5,6 +5,29 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 # Create your tests here.
 
+class ModelTestCase(TestCase):
+	"""This class defones the test suite for the gameslist model"""
+
+	def setup(self):
+		self.gameslist_title = "zelda"
+		self.gameslist_console = "N64"
+		self.gameslist_score = "85"
+		self.gameslist_description = "Amazing"
+		self.gameslist_release_date = "2/2/98"
+		self.gameslist_fond_memories = "Meow"
+		self.gameslist  Gameslist(title=self,gameslist_title)
+		self.gameslist  Gameslist(console=self,gameslist_console)
+		self.gameslist  Gameslist(score=self,gameslist_score)
+		self.gameslist  Gameslist(description=self,gameslist_description)
+		self.gameslist  Gameslist(releasedate=self,gameslist_release_date)
+		self.gameslist  Gameslist(fondmemories=self,gameslist_fond_memories)
+	
+	def test_model_can_create_a_gameslist(self):
+		old_count = Gameslist.objects.count()
+		self.gameslist.save()
+		new_count = Gameslist.objects.count()
+		self.assertNotEqual(old_count, new_count)
+
 class ViewTestCase(TestCase):
 
 	def url_test(self):
@@ -38,29 +61,5 @@ class ViewTestCase(TestCase):
 	
 	def test_api_can_create_a_gameslist(self):
 		self.assertEqual(self.status_code, status.HTTP_201_CREATED)
-
-	
 	 
 		
-class ModelTestCase(TestCase):
-	"""This class defones the test suite for the gameslist model"""
-
-	def setup(self):
-		self.gameslist_title = "zelda"
-		self.gameslist_console = "N64"
-		self.gameslist_score = "85"
-		self.gameslist_description = "Amazing"
-		self.gameslist_release_date = "2/2/98"
-		self.gameslist_fondme_mories = "Meow"
-		self.gameslist  Gameslist(title=self,gameslist_title)
-		self.gameslist  Gameslist(console=self,gameslist_console)
-		self.gameslist  Gameslist(score=self,gameslist_score)
-		self.gameslist  Gameslist(description=self,gameslist_description)
-		self.gameslist  Gameslist(releasedate=self,gameslist_releasedate)
-		self.gameslist  Gameslist(fondmemories=self,gameslist_fondmemories)
-	
-	def test_model_can_create_a_gameslist(self):
-		old_count = Gameslist.objects.count()
-		self.gameslist.save()
-		new_count = Gameslist.objects.count()
-		self.assertNotEqual(old_count, new_count)

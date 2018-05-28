@@ -12,7 +12,7 @@ To run -
 	to the project and then to the vemv for example C:\Yourname\Desktop\cg\venv This
 	
 	Now the virtual environment must be started, in command line cd into the projects main folder
-	then tyoe - venv\bin\activate
+	then tyoe - venv\scripts\activate
 	This will start the virtual environment, now cd into the djangorest folder
 	then type - python manage.py runserver 
 
